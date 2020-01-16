@@ -58,13 +58,6 @@ dir_map = {
     'w': 'w_to'
 }
 
-name_map = {
-    'n': 'north',
-    's': 'south',
-    'e': 'east',
-    'w': 'west'
-}
-
 
 def main():
 
@@ -73,23 +66,22 @@ def main():
     while True:
         print(f"You are currently in {player_1.current_room.name}")
         print(f"Description: {player_1.current_room.description}")
-        print("""=================Options==================
+        print("""
+=================Options==================
 North: n | South: s | East:  e | West:  w
 ==========================================
 Quit: q
-===========================""".lower())
+===========================
+""".lower())
         user_input = input("Make your move: ")
-        print("\n\n\n\n")
+        print("\n\n\n\n"*10)
 
         # game logic
-        if user_input in name_map.keys():
+        if user_input in dir_map.keys():
             try:
-                print(
-                    f"The current player room is {player_1.current_room.name}")
+
                 player_1.current_room = getattr(
                     player_1.current_room, dir_map[user_input])
-                print(
-                    f"Room Changed to {player_1.current_room.name}")
             except AttributeError:
                 print("==================================")
                 print("There Is No Room In That Direction")
