@@ -8,7 +8,7 @@ room = {
                      "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", ["Coins"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -67,12 +67,18 @@ def main():
         print(f"You are currently in {player_1.current_room.name}")
         print(f"Description: {player_1.current_room.description}")
         print("""
-=================Options==================
-North: n | South: s | East:  e | West:  w
-==========================================
-Quit: q
-===========================
+=======================Options======================
+North: n | South: s | East:  e | West:  w | Quit: q
+====================================================
+====================================================
 """.lower())
+
+        if len(player_1.current_room.items) <= 0:
+            print("There are no items in this room")
+        else:
+            print("Current Items in the room")
+            for item in player_1.current_room.items:
+                print(item)
         user_input = input("Make your move: ")
         print("\n\n\n\n"*10)
 
