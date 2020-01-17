@@ -19,10 +19,10 @@ class Room:
 
     def __str__(self):
         display_string = ""
-        display_string += f"\n----------------\n"
+        display_string += f"----------------"
         display_string += f"\n{self.name}\n"
         display_string += f"\n{self.description}\n"
-        display_string += f"\n{self.get_exits_string()}\n"
+        display_string += f"{self.get_exits_string()}\n"
         return display_string
 
     def get_room_in_direction(self, direction):
@@ -42,5 +42,16 @@ class Room:
             exits.append("w")
         return exits
 
+    def get_items(self):
+        if len(self.items) > 0:
+            print(f"Items in the room: ")
+            for item in self.items:
+                print(item)
+        else:
+            print("There are no items in the room")
+
     def get_exits_string(self):
-        return f"Exits: {', '.join(self.get_exits())}"
+        return f"Moves: {', '.join(self.get_exits())}"
+
+    def add_item(self, item):
+        self.items.append(item)
